@@ -1,6 +1,6 @@
 #define MODE_HELLO_WORLD    (1)
 #define MODE_HELLO_KM       (2)
-#define MODE_HELLO_HATENA      (3)
+#define MODE_HELLO_HATENA   (3)
 
 #define WAIT_TIME           (20) // [ms]
 
@@ -20,13 +20,14 @@ void loop()
 	if(Serial.available() > 0) {
         // read character from serial port
 		int getstr = Serial.read();
+        // int getstr_ = Serial.read();
 		if(getstr == 'w') {
             g_display_mode = MODE_HELLO_WORLD;
         }
 		else if(getstr == 'k') {
             g_display_mode = MODE_HELLO_KM;
         }
-        else {
+        else if(getstr != 'k' && getstr != 'w' && getstr != '\n') {
             g_display_mode = MODE_HELLO_HATENA;
         }
     }
